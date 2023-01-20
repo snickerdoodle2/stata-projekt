@@ -1,8 +1,5 @@
 library(GA)
 
-# TODO: remove import
-library(smoof)
-
 # TODO: correct GA parameters and/or set popSize & maxiter as arguments
 calculate_ga <- function(fitness, iters) {
 	lower <- getLowerBoxConstraints(fitness)
@@ -25,6 +22,3 @@ calculate_ga <- function(fitness, iters) {
 
     return(mean(out))
 }
-
-# TODO: remove test
-print(calculate_ga(makeAckleyFunction(1), 20))
