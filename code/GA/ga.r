@@ -3,13 +3,13 @@ library(GA)
 # TODO: remove import
 library(smoof)
 
+# TODO: correct GA parameters and/or set popSize & maxiter as arguments
 calculate_ga <- function(fitness, iters) {
 	lower <- getLowerBoxConstraints(fitness)
 	upper <- getUpperBoxConstraints(fitness)
 
 	out = c();
 
-# TODO: correct GA parameters
 	for (i in 1:iters){
         single_GA <- ga(
             type = "real-valued",
