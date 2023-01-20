@@ -1,26 +1,30 @@
 library(GA)
 
-# TODO: Write fitness function.
-fitness <- function(vec) {
-    sum <- 0
-    for (value in vec){
-        sum <- sum + value
-    }
-    return((-1) * sum)
-}
+# TODO: remove import
+library(smoof)
 
-my_ga <- function(dimension) {
+calculate_ga <- function(fitness, iters) {
+	lower <- getLowerBoxConstraints(fitness)
+	upper <- getUpperBoxConstraints(fitness)
+
+	out = c();
+
 # TODO: correct GA parameters
-    GA <- ga(
-        type = "real-valued",
-        fitness = fitness,
-        lower = rep(-10, dimension),
-        upper = rep(10, dimension),
-        popSize = 50,
-        maxiter = 100
-    )
+	for (i in 1:iters){
+        single_GA <- ga(
+            type = "real-valued",
+            fitness = function(x) (-1) * fitness(x),
+            lower = lower,
+            upper = upper,
+            popSize = 50,
+            maxiter = 200
+        )
 
-    print(GA@solution)
+        out = c(out, fitness(single_GA@solution))
+	}
+
+    return(mean(out))
 }
 
-my_ga(2)
+# TODO: remove test
+print(calculate_ga(makeAckleyFunction(1), 20))
