@@ -13,7 +13,7 @@ calculate_prs <- function(fitness, iters) {
     random_vector <- numeric(dimensions)
 
     # pre-setting the min value
-    min_value <- fitness(lower)
+    min_value <- Inf
 
 
     for (i in 1:iters) {
