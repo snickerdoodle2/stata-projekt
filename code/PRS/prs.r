@@ -9,22 +9,24 @@ calculate_prs <- function(fitness, iters) {
     upper <- getUpperBoxConstraints(fitness)
     dimensions <- length(lower)
 
-    # preparing the vector used in pure random search
-    random_vector <- numeric(dimensions)
+    single_prs <- function() {
+        # preparing the vector used in pure random search
 
-    # pre-setting the min value
-    min_value <- Inf
-
-
-    for (i in 1:iters) {
-        for (j in 1:dimensions) {
-            # generating a new vector with values unifomly distrubuted
-            # in range <lower[i], upper[i]>
-            random_vector[j] <- runif(1, min = lower[j], max = upper[j])
+        # pre-setting the min value
+        min_value <- Inf
+        random_vector <- numeric(dimensions)
+        for (i in 1:1000) {
+            for (j in 1:dimensions) {
+                # generating a new vector with values unifomly distrubuted
+                # in range <lower[i], upper[i]>
+                random_vector[j] <- runif(1, min = lower[j], max = upper[j])
+            }
+            # updating the min value
+            min_value <- min(min_value, fitness(random_vector))
         }
-        # updating the min value
-        min_value <- min(min_value, fitness(random_vector))
+
+        return(min_value)
     }
 
-    return(min_value)
+    return(replicate(iters, single_prs()))
 }

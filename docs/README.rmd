@@ -1,0 +1,201 @@
+---
+output: md_document
+---
+# Porównanie algorytmów PRS i GA
+Autorzy: Krzysztof Dziechciarz, Dominik Pilipczuk
+
+
+### Potrzebne biblioteki:
+```{r,warning=FALSE,message=FALSE}
+library(GA)
+library(smoof)
+```
+
+### Definicje funkcji:
+`calculate_prs` - zwraca liste najmniejszych wartości znalezionych przez algorytm PRS (dla `iters` wywołań)
+```{r}
+calculate_prs <- function(fitness, iters) {
+    lower <- getLowerBoxConstraints(fitness)
+    upper <- getUpperBoxConstraints(fitness)
+    dimensions <- length(lower)
+
+    single_prs <- function() {
+        min_value <- Inf
+        random_vector <- numeric(dimensions)
+        for (i in 1:1000) {
+            for (j in 1:dimensions) {
+                random_vector[j] <- runif(1, min = lower[j], max = upper[j])
+            }
+            min_value <- min(min_value, fitness(random_vector))
+        }
+
+        return(min_value)
+    }
+
+    return(replicate(iters, single_prs()))
+}
+```
+
+
+`calculate_prs` - zwraca liste najmniejszych wartości znalezionych przez algorytm GA (dla `iters` wywołań)
+```{r}
+calculate_ga <- function(fitness, iters) {
+    lower <- getLowerBoxConstraints(fitness)
+    upper <- getUpperBoxConstraints(fitness)
+
+
+    single <- function() {
+        current_ga <- ga(
+            type = "real-valued",
+            fitness = function(x) (-1) * fitness(x),
+            lower = lower,
+            upper = upper,
+            popSize = 50,
+            maxiter = 20
+        )
+
+        return(fitness(current_ga@solution))
+    }
+
+    return(replicate(iters, single()))
+}
+```
+
+---
+# Porównanie
+
+## Dla dwóch wymiarów
+```{r}
+ackley_2 <- makeAckleyFunction(2)
+ackley_2_ga <- calculate_ga(ackley_2, 50)
+ackley_2_prs <- calculate_prs(ackley_2, 50)
+```
+
+### GA
+
+Średnia wartość:
+
+```{r, echo = FALSE}
+mean(ackley_2_ga)
+```
+
+Wykres pudełkowy:
+
+```{r, echo = FALSE}
+boxplot(ackley_2_ga)
+```
+
+### PRS
+
+Średnia wartość:
+
+```{r, echo = FALSE}
+mean(ackley_2_prs)
+```
+
+Wykres pudełkowy:
+
+```{r, echo = FALSE}
+boxplot(ackley_2_prs)
+```
+
+
+### Head to head
+
+Różnica średnich wyników:
+```{r, echo = FALSE}
+abs(mean(ackley_2_ga) - mean(ackley_2_prs))
+```
+
+
+
+
+
+## Dla dziesięciu wymiarów
+```{r}
+ackley_10 <- makeAckleyFunction(10)
+ackley_10_ga <- calculate_ga(ackley_10, 50)
+ackley_10_prs <- calculate_prs(ackley_10, 50)
+```
+
+### GA
+
+Średnia wartość:
+
+```{r, echo = FALSE}
+mean(ackley_10_ga)
+```
+
+Wykres pudełkowy:
+
+```{r, echo = FALSE}
+boxplot(ackley_10_ga)
+```
+
+### PRS
+
+Średnia wartość:
+
+```{r, echo = FALSE}
+mean(ackley_10_prs)
+```
+
+Wykres pudełkowy:
+
+```{r, echo = FALSE}
+boxplot(ackley_10_prs)
+```
+
+
+### Head to head
+
+Różnica średnich wyników:
+```{r, echo = FALSE}
+abs(mean(ackley_10_ga) - mean(ackley_10_prs))
+```
+
+
+
+
+## Dla dwudziestu wymiarów
+```{r}
+ackley_20 <- makeAckleyFunction(20)
+ackley_20_ga <- calculate_ga(ackley_20, 50)
+ackley_20_prs <- calculate_prs(ackley_20, 50)
+```
+
+### GA
+
+Średnia wartość:
+
+```{r, echo = FALSE}
+mean(ackley_20_ga)
+```
+
+Wykres pudełkowy:
+
+```{r, echo = FALSE}
+boxplot(ackley_20_ga)
+```
+
+### PRS
+
+Średnia wartość:
+
+```{r, echo = FALSE}
+mean(ackley_20_prs)
+```
+
+Wykres pudełkowy:
+
+```{r, echo = FALSE}
+boxplot(ackley_20_prs)
+```
+
+
+### Head to head
+
+Różnica średnich wyników:
+```{r, echo = FALSE}
+abs(mean(ackley_20_ga) - mean(ackley_20_prs))
+```

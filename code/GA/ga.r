@@ -6,6 +6,7 @@ calculate_ga <- function(fitness, iters) {
     lower <- getLowerBoxConstraints(fitness)
     upper <- getUpperBoxConstraints(fitness)
 
+
     single <- function() {
         current_ga <- ga(
             type = "real-valued",
@@ -13,11 +14,11 @@ calculate_ga <- function(fitness, iters) {
             lower = lower,
             upper = upper,
             popSize = 50,
-            maxiter = 100
+            maxiter = 20
         )
 
         return(fitness(current_ga@solution))
     }
 
-    return(mean(replicate(iters, single())))
+    return(replicate(iters, single()))
 }
