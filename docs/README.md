@@ -1,4 +1,5 @@
-# Porównanie algorytmów PRS i GA
+Porównanie algorytmów PRS i GA
+==============================
 
 Autorzy: Krzysztof Dziechciarz, Dominik Pilipczuk
 
@@ -58,9 +59,11 @@ algorytm GA (dla `iters` wywołań)
 
 ------------------------------------------------------------------------
 
-# Porównanie
+Porównanie
+==========
 
-## Dla dwóch wymiarów
+Dla dwóch wymiarów
+------------------
 
     ackley_2 <- makeAckleyFunction(2)
     ackley_2_ga <- calculate_ga(ackley_2, 50)
@@ -70,7 +73,7 @@ algorytm GA (dla `iters` wywołań)
 
 Średnia wartość:
 
-    ## [1] 0.2322054
+    ## [1] 0.1203389
 
 Wykres pudełkowy:
 
@@ -80,7 +83,7 @@ Wykres pudełkowy:
 
 Średnia wartość:
 
-    ## [1] 3.613832
+    ## [1] 4.628488
 
 Wykres pudełkowy:
 
@@ -90,9 +93,10 @@ Wykres pudełkowy:
 
 Różnica średnich wyników:
 
-    ## [1] 3.381626
+    ## [1] 4.508149
 
-## Dla dziesięciu wymiarów
+Dla dziesięciu wymiarów
+-----------------------
 
     ackley_10 <- makeAckleyFunction(10)
     ackley_10_ga <- calculate_ga(ackley_10, 50)
@@ -102,7 +106,7 @@ Różnica średnich wyników:
 
 Średnia wartość:
 
-    ## [1] 6.615361
+    ## [1] 6.687461
 
 Wykres pudełkowy:
 
@@ -112,7 +116,7 @@ Wykres pudełkowy:
 
 Średnia wartość:
 
-    ## [1] 18.11387
+    ## [1] 18.2793
 
 Wykres pudełkowy:
 
@@ -122,9 +126,10 @@ Wykres pudełkowy:
 
 Różnica średnich wyników:
 
-    ## [1] 11.49851
+    ## [1] 11.59184
 
-## Dla dwudziestu wymiarów
+Dla dwudziestu wymiarów
+-----------------------
 
     ackley_20 <- makeAckleyFunction(20)
     ackley_20_ga <- calculate_ga(ackley_20, 50)
@@ -134,7 +139,7 @@ Różnica średnich wyników:
 
 Średnia wartość:
 
-    ## [1] 9.788317
+    ## [1] 9.656949
 
 Wykres pudełkowy:
 
@@ -144,7 +149,7 @@ Wykres pudełkowy:
 
 Średnia wartość:
 
-    ## [1] 19.78771
+    ## [1] 19.91613
 
 Wykres pudełkowy:
 
@@ -154,4 +159,4 @@ Wykres pudełkowy:
 
 Różnica średnich wyników:
 
-    ## [1] 9.999394
+    ## [1] 10.25919

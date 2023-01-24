@@ -7,7 +7,7 @@ Autorzy: Krzysztof Dziechciarz, Dominik Pilipczuk
 
 ### Potrzebne biblioteki:
 ```{r,warning=FALSE,message=FALSE}
-library(GA)
+library(ecr)
 library(smoof)
 ```
 
@@ -40,24 +40,23 @@ calculate_prs <- function(fitness, iters) {
 `calculate_prs` - zwraca liste najmniejszych wartości znalezionych przez algorytm GA (dla `iters` wywołań)
 ```{r}
 calculate_ga <- function(fitness, iters) {
-    lower <- getLowerBoxConstraints(fitness)
-    upper <- getUpperBoxConstraints(fitness)
+	lower = getLowerBoxConstraints(fitness)
+	upper = getUpperBoxConstraints(fitness)
 
+	single_ga <- function() {
+		res <- ecr(
+			fitness.fun = fitness, representation = "float",
+			n.dim = getNumberOfParameters(fitness), survival.strategy = "plus",
+			lower = lower, upper = upper,
+			mu = 10L, lambda = 2L,
+			mutator = setup(mutGauss, sdev = 2, lower = lower, upper = upper),
+			terminators = list(stopOnIters(100))
+		)
 
-    single <- function() {
-        current_ga <- ga(
-            type = "real-valued",
-            fitness = function(x) (-1) * fitness(x),
-            lower = lower,
-            upper = upper,
-            popSize = 50,
-            maxiter = 20
-        )
+		return(res$best.y)
+	}
 
-        return(fitness(current_ga@solution))
-    }
-
-    return(replicate(iters, single()))
+	return(replicate(iters, single_ga()))
 }
 ```
 
