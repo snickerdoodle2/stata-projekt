@@ -34,7 +34,7 @@ algorytm PRS (dla `iters` wywołań)
         return(replicate(iters, single_prs()))
     }
 
-`calculate_prs` - zwraca liste najmniejszych wartości znalezionych przez
+`calculate_ga` - zwraca liste najmniejszych wartości znalezionych przez
 algorytm GA (dla `iters` wywołań)
 
     calculate_ga <- function(fitness, iters) {
@@ -83,11 +83,11 @@ Podsumowanie:
     summary(ackley_2_ga)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ## 0.01486 0.15179 0.34969 0.54694 0.68592 2.37585
+    ## 0.04226 0.24917 0.48617 0.64572 1.05818 2.32429
 
 Średnia wartość:
 
-    ## [1] 0.5469414
+    ## [1] 0.6457218
 
 ### PRS
 
@@ -104,11 +104,11 @@ Podsumowanie:
     summary(ackley_2_prs)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##  0.8964  3.2435  4.0078  4.0499  5.2466  7.1488
+    ##   2.471   3.220   4.271   4.183   4.870   6.665
 
 Średnia wartość:
 
-    ## [1] 4.049896
+    ## [1] 4.182729
 
 ## Dla dwóch wymiarów - Funkcja Rastrigina
 
@@ -132,11 +132,11 @@ Podsumowanie:
     summary(rastrigin_2_ga)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##  0.1221  0.9320  1.2760  1.5608  1.9742  4.6783
+    ## 0.03901 0.99834 1.29663 1.51375 2.22478 4.47149
 
 Średnia wartość:
 
-    ## [1] 1.560783
+    ## [1] 1.513747
 
 ### PRS
 
@@ -153,11 +153,11 @@ Podsumowanie:
     summary(rastrigin_2_prs)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##  0.6852  1.2421  1.8017  1.9249  2.2943  4.2690
+    ## 0.01156 1.31749 2.02479 1.95775 2.51225 4.06667
 
 Średnia wartość:
 
-    ## [1] 1.924854
+    ## [1] 1.957755
 
 ## Dla dziesięciu wymiarów - Funkcja Ackley’a
 
@@ -181,11 +181,11 @@ Podsumowanie:
     summary(ackley_10_ga)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   2.667   4.406   4.708   4.841   5.260   6.565
+    ##   3.973   4.713   5.064   6.162   5.482  19.557
 
 Średnia wartość:
 
-    ## [1] 4.841204
+    ## [1] 6.162155
 
 ### PRS
 
@@ -202,11 +202,11 @@ Podsumowanie:
     summary(ackley_10_prs)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   17.31   17.94   18.24   18.30   18.62   19.40
+    ##   16.72   17.75   18.46   18.31   18.78   19.37
 
 Średnia wartość:
 
-    ## [1] 18.29903
+    ## [1] 18.31244
 
 ## Dla dziesięciu wymiarów - Funkcja Rastringa
 
@@ -230,11 +230,11 @@ Podsumowanie:
     summary(rastrigin_10_ga)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   48.73   64.95   71.22   73.01   81.01   95.08
+    ##   42.44   68.41   78.28   78.15   86.35  107.14
 
 Średnia wartość:
 
-    ## [1] 73.01218
+    ## [1] 78.14743
 
 ### PRS
 
@@ -251,11 +251,11 @@ Podsumowanie:
     summary(rastrigin_10_prs)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   62.71   79.63   84.68   84.42   92.39  100.56
+    ##   57.61   76.59   85.34   84.24   92.32  103.26
 
 Średnia wartość:
 
-    ## [1] 84.41884
+    ## [1] 84.23634
 
 ## Dla dwudziestu wymiarów - Funkcja Ackley’a
 
@@ -279,11 +279,11 @@ Podsumowanie:
     summary(ackley_20_ga)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   6.117   7.573   8.574   9.896  10.996  19.722
+    ##   5.795   7.802   8.493   9.441   9.791  17.939
 
 Średnia wartość:
 
-    ## [1] 9.896396
+    ## [1] 9.440547
 
 ### PRS
 
@@ -300,11 +300,11 @@ Podsumowanie:
     summary(ackley_20_prs)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   18.86   19.65   19.90   19.81   20.05   20.24
+    ##   18.52   19.82   19.98   19.90   20.11   20.40
 
 Średnia wartość:
 
-    ## [1] 19.80556
+    ## [1] 19.90343
 
 ## Dla dwudziestu wymiarów - Funkcja Rastringa
 
@@ -328,11 +328,11 @@ Podsumowanie:
     summary(rastrigin_20_ga)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   136.5   185.5   197.2   195.6   208.2   237.2
+    ##   135.7   177.4   197.1   194.6   209.6   247.2
 
 Średnia wartość:
 
-    ## [1] 195.5636
+    ## [1] 194.6455
 
 ### PRS
 
@@ -349,8 +349,8 @@ Podsumowanie:
     summary(rastrigin_20_prs)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   157.8   221.3   231.6   228.8   239.6   258.0
+    ##   179.8   223.2   231.3   230.3   239.6   253.4
 
 Średnia wartość:
 
-    ## [1] 228.8318
+    ## [1] 230.2534

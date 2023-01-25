@@ -38,7 +38,7 @@ calculate_prs <- function(fitness, iters) {
 ```
 
 
-`calculate_prs` - zwraca liste najmniejszych wartości znalezionych przez algorytm GA (dla `iters` wywołań)
+`calculate_ga` - zwraca liste najmniejszych wartości znalezionych przez algorytm GA (dla `iters` wywołań)
 ```{r}
 calculate_ga <- function(fitness, iters) {
     lower <- getLowerBoxConstraints(fitness)
