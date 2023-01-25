@@ -23,5 +23,3 @@ calculate_ga <- function(fitness, iters) {
 
     return(replicate(iters, single_ga()))
 }
-
-print(calculate_ga(makeAckleyFunction(2), 5))
