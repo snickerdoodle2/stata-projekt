@@ -9,6 +9,7 @@ Autorzy: Krzysztof Dziechciarz, Dominik Pilipczuk
 ```{r,warning=FALSE,message=FALSE}
 library(ecr)
 library(smoof)
+library(mcreplicate)
 ```
 
 ### Definicje funkcji:
@@ -40,30 +41,30 @@ calculate_prs <- function(fitness, iters) {
 `calculate_prs` - zwraca liste najmniejszych wartości znalezionych przez algorytm GA (dla `iters` wywołań)
 ```{r}
 calculate_ga <- function(fitness, iters) {
-	lower = getLowerBoxConstraints(fitness)
-	upper = getUpperBoxConstraints(fitness)
+    lower <- getLowerBoxConstraints(fitness)
+    upper <- getUpperBoxConstraints(fitness)
+    dims <- getNumberOfParameters(fitness)
 
-	single_ga <- function() {
-		res <- ecr(
-			fitness.fun = fitness, representation = "float",
-			n.dim = getNumberOfParameters(fitness), survival.strategy = "plus",
-			lower = lower, upper = upper,
-			mu = 10L, lambda = 2L,
-			mutator = setup(mutGauss, sdev = 2, lower = lower, upper = upper),
-			terminators = list(stopOnIters(100))
-		)
+    single_ga <- function() {
+        res <- ecr(
+            fitness.fun = fitness, representation = "float",
+            n.dim = dims,
+            mu = 10L, lambda = 1L,
+            mutator = setup(mutGauss, sdev = 2, lower = lower, upper = upper),
+            terminators = list(stopOnIters(1000))
+        )
 
-		return(res$best.y)
-	}
+        return(res$best.y)
+    }
 
-	return(replicate(iters, single_ga()))
+    return(mc_replicate(iters, single_ga()))
 }
 ```
 
 ---
 # Porównanie
 
-## Dla dwóch wymiarów
+## Dla dwóch wymiarów - Funkcja Ackley'a
 ```{r}
 ackley_2 <- makeAckleyFunction(2)
 ackley_2_ga <- calculate_ga(ackley_2, 50)
@@ -72,10 +73,11 @@ ackley_2_prs <- calculate_prs(ackley_2, 50)
 
 ### GA
 
-Średnia wartość:
 
-```{r, echo = FALSE}
-mean(ackley_2_ga)
+Histogram:
+
+```{r, echo=FALSE}
+hist(ackley_2_ga)
 ```
 
 Wykres pudełkowy:
@@ -84,12 +86,24 @@ Wykres pudełkowy:
 boxplot(ackley_2_ga)
 ```
 
-### PRS
+Podsumowanie:
+```{r}
+summary(ackley_2_ga)
+```
 
 Średnia wartość:
 
 ```{r, echo = FALSE}
-mean(ackley_2_prs)
+mean(ackley_2_ga)
+```
+
+### PRS
+
+
+Histogram:
+
+```{r, echo=FALSE}
+hist(ackley_2_prs)
 ```
 
 Wykres pudełkowy:
@@ -98,19 +112,79 @@ Wykres pudełkowy:
 boxplot(ackley_2_prs)
 ```
 
+Podsumowanie:
+```{r}
+summary(ackley_2_prs)
+```
 
-### Head to head
+Średnia wartość:
 
-Różnica średnich wyników:
 ```{r, echo = FALSE}
-abs(mean(ackley_2_ga) - mean(ackley_2_prs))
+mean(ackley_2_prs)
 ```
 
 
+## Dla dwóch wymiarów - Funkcja Rastrigina
+```{r}
+rastrigin_2 <- makeRastriginFunction(2)
+rastrigin_2_ga <- calculate_ga(rastrigin_2, 50)
+rastrigin_2_prs <- calculate_prs(rastrigin_2, 50)
+```
+
+### GA
 
 
+Histogram:
 
-## Dla dziesięciu wymiarów
+```{r, echo=FALSE}
+hist(rastrigin_2_ga)
+```
+
+Wykres pudełkowy:
+
+```{r, echo = FALSE}
+boxplot(rastrigin_2_ga)
+```
+
+Podsumowanie:
+```{r}
+summary(rastrigin_2_ga)
+```
+
+Średnia wartość:
+
+```{r, echo = FALSE}
+mean(rastrigin_2_ga)
+```
+
+### PRS
+
+
+Histogram:
+
+```{r, echo=FALSE}
+hist(rastrigin_2_prs)
+```
+
+Wykres pudełkowy:
+
+```{r, echo = FALSE}
+boxplot(rastrigin_2_prs)
+```
+
+Podsumowanie:
+```{r}
+summary(rastrigin_2_prs)
+```
+
+Średnia wartość:
+
+```{r, echo = FALSE}
+mean(rastrigin_2_prs)
+```
+
+
+## Dla dziesięciu wymiarów - Funkcja Ackley'a
 ```{r}
 ackley_10 <- makeAckleyFunction(10)
 ackley_10_ga <- calculate_ga(ackley_10, 50)
@@ -119,10 +193,11 @@ ackley_10_prs <- calculate_prs(ackley_10, 50)
 
 ### GA
 
-Średnia wartość:
 
-```{r, echo = FALSE}
-mean(ackley_10_ga)
+Histogram:
+
+```{r, echo=FALSE}
+hist(ackley_10_ga)
 ```
 
 Wykres pudełkowy:
@@ -131,12 +206,24 @@ Wykres pudełkowy:
 boxplot(ackley_10_ga)
 ```
 
-### PRS
+Podsumowanie:
+```{r}
+summary(ackley_10_ga)
+```
 
 Średnia wartość:
 
 ```{r, echo = FALSE}
-mean(ackley_10_prs)
+mean(ackley_10_ga)
+```
+
+### PRS
+
+
+Histogram:
+
+```{r, echo=FALSE}
+hist(ackley_10_prs)
 ```
 
 Wykres pudełkowy:
@@ -145,18 +232,80 @@ Wykres pudełkowy:
 boxplot(ackley_10_prs)
 ```
 
+Podsumowanie:
+```{r}
+summary(ackley_10_prs)
+```
 
-### Head to head
+Średnia wartość:
 
-Różnica średnich wyników:
 ```{r, echo = FALSE}
-abs(mean(ackley_10_ga) - mean(ackley_10_prs))
+mean(ackley_10_prs)
+```
+
+
+## Dla dziesięciu wymiarów - Funkcja Rastringa
+```{r}
+rastrigin_10 <- makeRastriginFunction(10)
+rastrigin_10_ga <- calculate_ga(rastrigin_10, 50)
+rastrigin_10_prs <- calculate_prs(rastrigin_10, 50)
+```
+
+### GA
+
+
+Histogram:
+
+```{r, echo=FALSE}
+hist(rastrigin_10_ga)
+```
+
+Wykres pudełkowy:
+
+```{r, echo = FALSE}
+boxplot(rastrigin_10_ga)
+```
+
+Podsumowanie:
+```{r}
+summary(rastrigin_10_ga)
+```
+
+Średnia wartość:
+
+```{r, echo = FALSE}
+mean(rastrigin_10_ga)
+```
+
+### PRS
+
+
+Histogram:
+
+```{r, echo=FALSE}
+hist(rastrigin_10_prs)
+```
+
+Wykres pudełkowy:
+
+```{r, echo = FALSE}
+boxplot(rastrigin_10_prs)
+```
+
+Podsumowanie:
+```{r}
+summary(rastrigin_10_prs)
+```
+
+Średnia wartość:
+
+```{r, echo = FALSE}
+mean(rastrigin_10_prs)
 ```
 
 
 
-
-## Dla dwudziestu wymiarów
+## Dla dwudziestu wymiarów - Funkcja Ackley'a
 ```{r}
 ackley_20 <- makeAckleyFunction(20)
 ackley_20_ga <- calculate_ga(ackley_20, 50)
@@ -165,10 +314,11 @@ ackley_20_prs <- calculate_prs(ackley_20, 50)
 
 ### GA
 
-Średnia wartość:
 
-```{r, echo = FALSE}
-mean(ackley_20_ga)
+Histogram:
+
+```{r, echo=FALSE}
+hist(ackley_20_ga)
 ```
 
 Wykres pudełkowy:
@@ -177,12 +327,24 @@ Wykres pudełkowy:
 boxplot(ackley_20_ga)
 ```
 
-### PRS
+Podsumowanie:
+```{r}
+summary(ackley_20_ga)
+```
 
 Średnia wartość:
 
 ```{r, echo = FALSE}
-mean(ackley_20_prs)
+mean(ackley_20_ga)
+```
+
+### PRS
+
+
+Histogram:
+
+```{r, echo=FALSE}
+hist(ackley_20_prs)
 ```
 
 Wykres pudełkowy:
@@ -191,10 +353,73 @@ Wykres pudełkowy:
 boxplot(ackley_20_prs)
 ```
 
+Podsumowanie:
+```{r}
+summary(ackley_20_prs)
+```
 
-### Head to head
+Średnia wartość:
 
-Różnica średnich wyników:
 ```{r, echo = FALSE}
-abs(mean(ackley_20_ga) - mean(ackley_20_prs))
+mean(ackley_20_prs)
+```
+
+
+## Dla dwudziestu wymiarów - Funkcja Rastringa
+```{r}
+rastrigin_20 <- makeRastriginFunction(20)
+rastrigin_20_ga <- calculate_ga(rastrigin_20, 50)
+rastrigin_20_prs <- calculate_prs(rastrigin_20, 50)
+```
+
+### GA
+
+
+Histogram:
+
+```{r, echo=FALSE}
+hist(rastrigin_20_ga)
+```
+
+Wykres pudełkowy:
+
+```{r, echo = FALSE}
+boxplot(rastrigin_20_ga)
+```
+
+Podsumowanie:
+```{r}
+summary(rastrigin_20_ga)
+```
+
+Średnia wartość:
+
+```{r, echo = FALSE}
+mean(rastrigin_20_ga)
+```
+
+### PRS
+
+
+Histogram:
+
+```{r, echo=FALSE}
+hist(rastrigin_20_prs)
+```
+
+Wykres pudełkowy:
+
+```{r, echo = FALSE}
+boxplot(rastrigin_20_prs)
+```
+
+Podsumowanie:
+```{r}
+summary(rastrigin_20_prs)
+```
+
+Średnia wartość:
+
+```{r, echo = FALSE}
+mean(rastrigin_20_prs)
 ```
