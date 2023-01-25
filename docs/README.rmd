@@ -33,7 +33,7 @@ calculate_prs <- function(fitness, iters) {
         return(min_value)
     }
 
-    return(replicate(iters, single_prs()))
+    return(mc_replicate(iters, single_prs()))
 }
 ```
 
@@ -123,6 +123,11 @@ summary(ackley_2_prs)
 mean(ackley_2_prs)
 ```
 
+### Porównanie
+
+```{r}
+t.test(ackley_2_ga, ackley_2_prs)
+```
 
 ## Dla dwóch wymiarów - Funkcja Rastrigina
 ```{r}
@@ -182,6 +187,13 @@ summary(rastrigin_2_prs)
 ```{r, echo = FALSE}
 mean(rastrigin_2_prs)
 ```
+
+### Porównanie
+
+```{r}
+t.test(rastrigin_2_ga, rastrigin_2_prs)
+```
+
 
 
 ## Dla dziesięciu wymiarów - Funkcja Ackley'a
@@ -243,6 +255,13 @@ summary(ackley_10_prs)
 mean(ackley_10_prs)
 ```
 
+### Porównanie
+
+```{r}
+t.test(ackley_10_ga, ackley_10_prs)
+```
+
+
 
 ## Dla dziesięciu wymiarów - Funkcja Rastringa
 ```{r}
@@ -302,6 +321,13 @@ summary(rastrigin_10_prs)
 ```{r, echo = FALSE}
 mean(rastrigin_10_prs)
 ```
+
+### Porównanie
+
+```{r}
+t.test(rastrigin_10_ga, rastrigin_10_prs)
+```
+
 
 
 
@@ -364,6 +390,13 @@ summary(ackley_20_prs)
 mean(ackley_20_prs)
 ```
 
+### Porównanie
+
+```{r}
+t.test(ackley_20_ga, ackley_20_prs)
+```
+
+
 
 ## Dla dwudziestu wymiarów - Funkcja Rastringa
 ```{r}
@@ -423,3 +456,13 @@ summary(rastrigin_20_prs)
 ```{r, echo = FALSE}
 mean(rastrigin_20_prs)
 ```
+
+
+### Porównanie
+
+```{r}
+t.test(rastrigin_20_ga, rastrigin_20_prs)
+```
+
+
+# Wnioski
