@@ -2,6 +2,7 @@ library(smoof)
 library(ecr)
 library(mcreplicate)
 
+
 # TODO: correct GA parameters and/or set popSize & maxiter as arguments
 calculate_ga <- function(fitness, iters) {
     lower <- getLowerBoxConstraints(fitness)
@@ -20,7 +21,7 @@ calculate_ga <- function(fitness, iters) {
         return(res$best.y)
     }
 
-    return(mc_replicate(iters, single_ga()))
+    return(replicate(iters, single_ga()))
 }
 
-print(calculate_ga(makeAckleyFunction(20), 50))
+print(calculate_ga(makeAckleyFunction(2), 5))
