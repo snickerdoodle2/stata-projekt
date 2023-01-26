@@ -450,5 +450,5 @@ mean(rastrigin_20_prs)
 
 ### Test t-Studenta
 ```{r}
-t.test(rastrigin_20_ga, rastrigin_20chat_prs)
+t.test(rastrigin_20_ga, rastrigin_20_prs)
 ```
