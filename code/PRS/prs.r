@@ -30,5 +30,3 @@ calculate_prs <- function(fitness, iters) {
 
     return(replicate(iters, single_prs()))
 }
-
-print(calculate_prs(makeAckleyFunction(2), 50))
