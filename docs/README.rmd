@@ -491,8 +491,8 @@ t.test(rastrigin_20_ga, rastrigin_20_prs)
 Wszystkie powyższe dane wyjściowe pokazują podobne zachowanie użytych algorytmów, więc dokonam zbierczej ich analizy.
 Stawiamy hipotezę zerową, że różnica średnich wyników użytych algorytmów jest równa 0.
 W każdym z testów obliczona wartość t jest silnie ujemna, co oznacza ze za kazdym razem algorytm genetyczy znajdował mniejsze minima niż algorytm PRS.
-Największa osiągnięta wartość p-value, rzędu 10^-3, została otrzymana w wyniku testu Studenta wyników algorytmów dla funkcji Rastrigina w dwóch wymiarach. 
-Tak mała wartość p-value jest znacząco mniejsza od konwencjonalnie przyjętej wartości odrzucenia hipotezy zerowej wynoszącej 0,05. W żadnym z analizowanych przypadków
+Największa osiągnięta wartość p-value, rzędu 10^-3, została otrzymana w wyniku testu Studenta wyników algorytmów dla funkcji Rastrigina w dwóch wymiarach, natomiast najmniejsza p-wartość jest rzędu 10^-16 i została osiągnięta dla t-testu funckji Ackleya w dwóch wymiarach. 
+Tak małe wartości p-value są znacząco mniejsze od konwencjonalnie przyjętej wartości odrzucenia hipotezy zerowej wynoszącej 0,05. W żadnym z analizowanych przypadków
 punkt 0 nie zawierał się w 95 procentowym przedziale ufności dla otrzymanej różnicy średnich, co tym bardziej utwierdza w przekonaniu, że postawiona hipoteza zerowa jest fałszywa.
 
 
