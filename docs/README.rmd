@@ -497,3 +497,14 @@ punkt 0 nie zawierał się w 95 procentowym przedziale ufności dla otrzymanej r
 
 
 
+
+
+
+
+# Wnioski
+Z histogramów oraz z wykresów pudełkowych widać, że algorytm genetyczny jest bardziej konsekwentny w swoim działaniu - wartości każdego z 50 wywołań są do siebie bardziej zbliżone niż wyniki z PRS - w szczególności dla mniejszej ilości wymiarów. 
+
+<!-- o co mi tu chodzi?? -->
+Jest to najpewniej spowodowane tym, że algorytm GA ma więcej "kierunków w strone których może iść"
+
+Algorytm PRS jest, jak sama nazwa wskazuje, w pełni losowy, przez co nie ma aż tak wielkiej różnicy pomiędzy dwoma a dwudziestoma wymiarami.
