@@ -83,11 +83,11 @@ Podsumowanie:
     summary(ackley_2_ga)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ## 0.03216 0.21794 0.42402 0.59028 0.66128 2.46359
+    ## 0.02999 0.20099 0.46826 0.60629 0.92401 2.13830
 
 Średnia wartość:
 
-    ## [1] 0.5902753
+    ## [1] 0.6062938
 
 ### PRS
 
@@ -104,11 +104,11 @@ Podsumowanie:
     summary(ackley_2_prs)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   1.906   3.222   3.832   3.911   4.425   7.026
+    ##  0.6788  3.1141  3.9176  4.1437  5.3528  8.1354
 
 Średnia wartość:
 
-    ## [1] 3.911098
+    ## [1] 4.14371
 
 ### Porównanie
 
@@ -118,13 +118,13 @@ Podsumowanie:
     ##  Welch Two Sample t-test
     ## 
     ## data:  ackley_2_ga and ackley_2_prs
-    ## t = -18.575, df = 73.332, p-value < 2.2e-16
+    ## t = -14.48, df = 58.068, p-value < 2.2e-16
     ## alternative hypothesis: true difference in means is not equal to 0
     ## 95 percent confidence interval:
-    ##  -3.677103 -2.964542
+    ##  -4.026420 -3.048413
     ## sample estimates:
     ## mean of x mean of y 
-    ## 0.5902753 3.9110977
+    ## 0.6062938 4.1437103
 
 ## Dla dwóch wymiarów - Funkcja Rastrigina
 
@@ -148,11 +148,11 @@ Podsumowanie:
     summary(rastrigin_2_ga)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ## 0.00366 1.06867 1.50479 1.57228 2.08760 3.84409
+    ## 0.01221 1.02541 1.22151 1.47542 1.93272 5.67109
 
 Średnia wartość:
 
-    ## [1] 1.572275
+    ## [1] 1.475421
 
 ### PRS
 
@@ -169,11 +169,11 @@ Podsumowanie:
     summary(rastrigin_2_prs)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ## 0.07412 1.03024 1.74475 1.78662 2.54177 3.97188
+    ##  0.1931  1.1598  1.5356  1.6456  2.2262  3.4321
 
 Średnia wartość:
 
-    ## [1] 1.786621
+    ## [1] 1.645605
 
 ### Porównanie
 
@@ -183,13 +183,13 @@ Podsumowanie:
     ##  Welch Two Sample t-test
     ## 
     ## data:  rastrigin_2_ga and rastrigin_2_prs
-    ## t = -1.1403, df = 97.014, p-value = 0.257
+    ## t = -0.95726, df = 93.458, p-value = 0.3409
     ## alternative hypothesis: true difference in means is not equal to 0
     ## 95 percent confidence interval:
-    ##  -0.5874107  0.1587189
+    ##  -0.5232036  0.1828346
     ## sample estimates:
     ## mean of x mean of y 
-    ##  1.572275  1.786621
+    ##  1.475421  1.645605
 
 ## Dla dziesięciu wymiarów - Funkcja Ackley’a
 
@@ -213,11 +213,11 @@ Podsumowanie:
     summary(ackley_10_ga)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   3.774   4.681   5.556   5.611   6.035  10.018
+    ##   3.345   4.901   5.451   5.771   6.015  18.479
 
 Średnia wartość:
 
-    ## [1] 5.61068
+    ## [1] 5.770527
 
 ### PRS
 
@@ -234,11 +234,11 @@ Podsumowanie:
     summary(ackley_10_prs)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   15.74   18.06   18.49   18.30   18.74   19.36
+    ##   14.61   17.65   18.33   18.02   18.77   19.30
 
 Średnia wartość:
 
-    ## [1] 18.29893
+    ## [1] 18.01777
 
 ### Porównanie
 
@@ -248,13 +248,13 @@ Podsumowanie:
     ##  Welch Two Sample t-test
     ## 
     ## data:  ackley_10_ga and ackley_10_prs
-    ## t = -58.843, df = 74.686, p-value < 2.2e-16
+    ## t = -36.884, df = 72.761, p-value < 2.2e-16
     ## alternative hypothesis: true difference in means is not equal to 0
     ## 95 percent confidence interval:
-    ##  -13.11783 -12.25867
+    ##  -12.90906 -11.58543
     ## sample estimates:
     ## mean of x mean of y 
-    ##   5.61068  18.29893
+    ##  5.770527 18.017775
 
 ## Dla dziesięciu wymiarów - Funkcja Rastringa
 
@@ -278,11 +278,11 @@ Podsumowanie:
     summary(rastrigin_10_ga)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   47.39   68.34   77.16   75.55   83.45   96.84
+    ##   51.03   67.03   77.11   76.15   84.11  103.37
 
 Średnia wartość:
 
-    ## [1] 75.54835
+    ## [1] 76.15127
 
 ### PRS
 
@@ -299,11 +299,11 @@ Podsumowanie:
     summary(rastrigin_10_prs)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   66.18   83.10   86.39   87.10   93.85  102.41
+    ##   63.52   82.77   88.38   87.42   93.24  104.84
 
 Średnia wartość:
 
-    ## [1] 87.10429
+    ## [1] 87.4223
 
 ### Porównanie
 
@@ -313,13 +313,13 @@ Podsumowanie:
     ##  Welch Two Sample t-test
     ## 
     ## data:  rastrigin_10_ga and rastrigin_10_prs
-    ## t = -5.6474, df = 86.671, p-value = 2.029e-07
+    ## t = -5.3386, df = 89.359, p-value = 7.046e-07
     ## alternative hypothesis: true difference in means is not equal to 0
     ## 95 percent confidence interval:
-    ##  -15.623257  -7.488621
+    ##  -15.465800  -7.076265
     ## sample estimates:
     ## mean of x mean of y 
-    ##  75.54835  87.10429
+    ##  76.15127  87.42230
 
 ## Dla dwudziestu wymiarów - Funkcja Ackley’a
 
@@ -343,11 +343,11 @@ Podsumowanie:
     summary(ackley_20_ga)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   6.031   7.177   8.095   8.971   9.283  19.268
+    ##   6.790   7.414   8.038   8.697   9.033  18.878
 
 Średnia wartość:
 
-    ## [1] 8.970637
+    ## [1] 8.69688
 
 ### PRS
 
@@ -364,11 +364,11 @@ Podsumowanie:
     summary(ackley_20_prs)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   19.39   19.70   19.83   19.85   20.01   20.40
+    ##   18.17   19.59   19.90   19.80   20.05   20.25
 
 Średnia wartość:
 
-    ## [1] 19.84623
+    ## [1] 19.79936
 
 ### Porównanie
 
@@ -378,13 +378,13 @@ Podsumowanie:
     ##  Welch Two Sample t-test
     ## 
     ## data:  ackley_20_ga and ackley_20_prs
-    ## t = -25.533, df = 49.589, p-value < 2.2e-16
+    ## t = -35.142, df = 52.146, p-value < 2.2e-16
     ## alternative hypothesis: true difference in means is not equal to 0
     ## 95 percent confidence interval:
-    ##  -11.73129 -10.01989
+    ##  -11.73640 -10.46856
     ## sample estimates:
     ## mean of x mean of y 
-    ##  8.970637 19.846227
+    ##   8.69688  19.79936
 
 ## Dla dwudziestu wymiarów - Funkcja Rastringa
 
@@ -408,11 +408,11 @@ Podsumowanie:
     summary(rastrigin_20_ga)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   146.0   183.4   195.8   196.1   207.2   253.8
+    ##   146.2   178.7   189.9   192.6   207.7   239.3
 
 Średnia wartość:
 
-    ## [1] 196.0614
+    ## [1] 192.557
 
 ### PRS
 
@@ -429,11 +429,11 @@ Podsumowanie:
     summary(rastrigin_20_prs)
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   187.5   219.1   227.7   226.1   234.8   252.4
+    ##   183.6   220.0   229.8   227.2   238.5   253.1
 
 Średnia wartość:
 
-    ## [1] 226.1335
+    ## [1] 227.1903
 
 ### Porównanie
 
@@ -443,12 +443,25 @@ Podsumowanie:
     ##  Welch Two Sample t-test
     ## 
     ## data:  rastrigin_20_ga and rastrigin_20_prs
-    ## t = -8.2922, df = 77.834, p-value = 2.589e-12
+    ## t = -9.2081, df = 85.996, p-value = 1.855e-14
     ## alternative hypothesis: true difference in means is not equal to 0
     ## 95 percent confidence interval:
-    ##  -37.29227 -22.85199
+    ##  -42.11021 -27.15629
     ## sample estimates:
     ## mean of x mean of y 
-    ##  196.0614  226.1335
+    ##  192.5570  227.1903
 
 # Wnioski
+
+Z histogramów oraz z wykresów pudełkowych widać, że algorytm genetyczny
+jest bardziej konsekwentny w swoim działaniu - wartości każdego z 50
+wywołań są do siebie bardziej zbliżone niż wyniki z PRS - w
+szczególności dla mniejszej ilości wymiarów.
+
+<!-- o co mi tu chodzi?? -->
+
+Jest to najpewniej spowodowane tym, że algorytm GA ma więcej “kierunków
+w strone których może iść”
+
+Algorytm PRS jest, jak sama nazwa wskazuje, w pełni losowy, przez co nie
+ma aż tak wielkiej różnicy pomiędzy dwoma a dwudziestoma wymiarami.
