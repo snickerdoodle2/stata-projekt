@@ -57,7 +57,7 @@ calculate_ga <- function(fitness, iters) {
         return(res$best.y)
     }
 
-    return(mc_replicate(iters, single_ga()))
+    return(replicate(iters, single_ga()))
 }
 ```
 
