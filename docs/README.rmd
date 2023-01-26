@@ -132,6 +132,7 @@ mean(ackley_2_prs)
 t.test(ackley_2_ga, ackley_2_prs)
 ```
 
+
 ## Dla dwóch wymiarów - Funkcja Rastrigina
 ```{r}
 rastrigin_2 <- makeRastriginFunction(2)
@@ -452,3 +453,47 @@ mean(rastrigin_20_prs)
 ```{r}
 t.test(rastrigin_20_ga, rastrigin_20_prs)
 ```
+
+# Analiza statystyczna otrzymanych wyników testu t-Studenta
+Na początku dla przypomnienia zestawmy poniżej wyniki wszystkich sześciu testów t-Studenta które wykonaliśmy.
+
+#### Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Ackley'a w dwóch wymiarach
+```{r}
+t.test(ackley_2_ga, ackley_2_prs)
+```
+
+#### Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Rastrigina w dwóch wymiarach
+```{r}
+t.test(rastrigin_2_ga, rastrigin_2_prs)
+```
+
+#### Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Ackley'a w dziesięciu wymiarach
+```{r}
+t.test(ackley_10_ga, ackley_10_prs)
+```
+
+#### Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Rastrigina w dziesięciu wymiarach
+```{r}
+t.test(rastrigin_10_ga, rastrigin_10_prs)
+```
+
+#### Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Ackley'a w dwudziestu wymiarach
+```{r}
+t.test(ackley_20_ga, ackley_20_prs)
+```
+
+#### Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Rastrigina w dwudziestu wymiarach
+```{r}
+t.test(rastrigin_20_ga, rastrigin_20_prs)
+```
+
+### Analiza statystyczna otrzymanych wyników
+Wszystkie powyższe dane wyjściowe pokazują podobne zachowanie użytych algorytmów, więc dokonam zbierczej ich analizy.
+Stawiamy hipotezę zerową, że różnica średnich wyników użytych algorytmów jest równa 0.
+W każdym z testów obliczona wartość t jest silnie ujemna, co oznacza ze za kazdym razem algorytm genetyczy znajdował mniejsze minima niż algorytm PRS.
+Największa osiągnięta wartość p-value, rzędu 10^-3, została otrzymana w wyniku testu Studenta wyników algorytmów dla funkcji Rastrigina w dwóch wymiarach. 
+Tak mała wartość p-value jest znacząco mniejsza od konwencjonalnie przyjętej wartości odrzucenia hipotezy zerowej wynoszącej 0,05. W żadnym z analizowanych przypadków
+punkt 0 nie zawierał się w 95 procentowym przedziale ufności dla otrzymanej różnicy średnich, co tym bardziej utwierdza w przekonaniu, że postawiona hipoteza zerowa jest fałszywa.
+
+
+
