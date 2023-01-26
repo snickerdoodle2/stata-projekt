@@ -1,6 +1,7 @@
 ---
-output: md_document
+output: md_document 
 ---
+
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(cache = TRUE)
 ```
@@ -36,12 +37,12 @@ calculate_prs <- function(fitness, iters) {
         return(min_value)
     }
 
-    return(replicate(iters, single_prs()))
+    return(mc_replicate(iters, single_prs()))
 }
 ```
 
 
-`calculate_prs` - zwraca liste najmniejszych wartości znalezionych przez algorytm GA (dla `iters` wywołań)
+`calculate_ga` - zwraca liste najmniejszych wartości znalezionych przez algorytm GA (dla `iters` wywołań)
 ```{r}
 calculate_ga <- function(fitness, iters) {
     lower <- getLowerBoxConstraints(fitness)
@@ -60,11 +61,12 @@ calculate_ga <- function(fitness, iters) {
         return(res$best.y)
     }
 
-    return(replicate(iters, single_ga()))
+    return(mc_replicate(iters, single_ga()))
 }
 ```
 
 ---
+
 # Porównanie
 
 ## Dla dwóch wymiarów - Funkcja Ackley'a
@@ -127,11 +129,12 @@ summary(ackley_2_prs)
 mean(ackley_2_prs)
 ```
 
-### Test t-Studenta
+## Test t-Studenta
 ```{r}
 t.test(ackley_2_ga, ackley_2_prs)
 ```
 
+---
 
 ## Dla dwóch wymiarów - Funkcja Rastrigina
 ```{r}
@@ -192,10 +195,12 @@ summary(rastrigin_2_prs)
 mean(rastrigin_2_prs)
 ```
 
-### Test t-Studenta
+## Test t-Studenta
 ```{r}
 t.test(rastrigin_2_ga, rastrigin_2_prs)
 ```
+
+---
 
 ## Dla dziesięciu wymiarów - Funkcja Ackley'a
 ```{r}
@@ -256,12 +261,14 @@ summary(ackley_10_prs)
 mean(ackley_10_prs)
 ```
 
-### Test t-Studenta
+## Test t-Studenta
 ```{r}
 t.test(ackley_10_ga, ackley_10_prs)
 ```
 
-## Dla dziesięciu wymiarów - Funkcja Rastringa
+---
+
+## Dla dziesięciu wymiarów - Funkcja Rastrigina
 ```{r}
 rastrigin_10 <- makeRastriginFunction(10)
 rastrigin_10_ga <- calculate_ga(rastrigin_10, 50)
@@ -320,10 +327,12 @@ summary(rastrigin_10_prs)
 mean(rastrigin_10_prs)
 ```
 
-### Test t-Studenta
+## Test t-Studenta
 ```{r}
 t.test(rastrigin_10_ga, rastrigin_10_prs)
 ```
+
+---
 
 
 ## Dla dwudziestu wymiarów - Funkcja Ackley'a
@@ -385,12 +394,14 @@ summary(ackley_20_prs)
 mean(ackley_20_prs)
 ```
 
-### Test t-Studenta
+## Test t-Studenta
 ```{r}
 t.test(ackley_20_ga, ackley_20_prs)
 ```
 
-## Dla dwudziestu wymiarów - Funkcja Rastringa
+---
+
+## Dla dwudziestu wymiarów - Funkcja Rastrigina
 ```{r}
 rastrigin_20 <- makeRastriginFunction(20)
 rastrigin_20_ga <- calculate_ga(rastrigin_20, 50)
@@ -449,45 +460,47 @@ summary(rastrigin_20_prs)
 mean(rastrigin_20_prs)
 ```
 
-### Test t-Studenta
+## Test t-Studenta
 ```{r}
 t.test(rastrigin_20_ga, rastrigin_20_prs)
 ```
+
+---
 
 # Analiza statystyczna otrzymanych wyników testu t-Studenta
 Na początku dla przypomnienia zestawmy poniżej wyniki wszystkich sześciu testów t-Studenta które wykonaliśmy.
 
-#### Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Ackley'a w dwóch wymiarach
+## Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Ackley'a w dwóch wymiarach
 ```{r}
 t.test(ackley_2_ga, ackley_2_prs)
 ```
 
-#### Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Rastrigina w dwóch wymiarach
+## Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Rastrigina w dwóch wymiarach
 ```{r}
 t.test(rastrigin_2_ga, rastrigin_2_prs)
 ```
 
-#### Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Ackley'a w dziesięciu wymiarach
+## Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Ackley'a w dziesięciu wymiarach
 ```{r}
 t.test(ackley_10_ga, ackley_10_prs)
 ```
 
-#### Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Rastrigina w dziesięciu wymiarach
+## Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Rastrigina w dziesięciu wymiarach
 ```{r}
 t.test(rastrigin_10_ga, rastrigin_10_prs)
 ```
 
-#### Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Ackley'a w dwudziestu wymiarach
+## Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Ackley'a w dwudziestu wymiarach
 ```{r}
 t.test(ackley_20_ga, ackley_20_prs)
 ```
 
-#### Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Rastrigina w dwudziestu wymiarach
+## Test t-Studenta dla wyników algorytmu PRS i GA dla funkcji Rastrigina w dwudziestu wymiarach
 ```{r}
 t.test(rastrigin_20_ga, rastrigin_20_prs)
 ```
 
-### Analiza statystyczna otrzymanych wyników
+## Analiza statystyczna otrzymanych wyników
 Wszystkie powyższe dane wyjściowe pokazują podobne zachowanie użytych algorytmów, więc dokonam zbierczej ich analizy.
 Stawiamy hipotezę zerową, że różnica średnich wyników użytych algorytmów jest równa 0.
 W każdym z testów obliczona wartość t jest silnie ujemna, co oznacza ze za kazdym razem algorytm genetyczy znajdował mniejsze minima niż algorytm PRS.
@@ -496,15 +509,15 @@ Tak małe wartości p-value są znacząco mniejsze od konwencjonalnie przyjętej
 punkt 0 nie zawierał się w 95 procentowym przedziale ufności dla otrzymanej różnicy średnich, co tym bardziej utwierdza w przekonaniu, że postawiona hipoteza zerowa jest fałszywa.
 
 
-
-
-
-
-
 # Wnioski
-Z histogramów oraz z wykresów pudełkowych widać, że algorytm genetyczny jest bardziej konsekwentny w swoim działaniu - wartości każdego z 50 wywołań są do siebie bardziej zbliżone niż wyniki z PRS - w szczególności dla mniejszej ilości wymiarów. 
+Z histogramów oraz z wykresów pudełkowych widać, że algorytm genetyczny 
+jest bardziej konsekwentny w swoim działaniu - wartości każdego z 50 wywołań 
+są do siebie bardziej zbliżone niż wyniki z PRS - w szczególności dla mniejszej 
+ilości wymiarów. 
 
-<!-- o co mi tu chodzi?? -->
-Jest to najpewniej spowodowane tym, że algorytm GA ma więcej "kierunków w strone których może iść"
+Z kolei dla większych ilości wymiarów algorytm ewolucyjny charakteryzuje się mniejszą systematycznością.
+Jest to spowodowane najpewniej większą ilością wymiarów, które musi optymalizować.
 
-Algorytm PRS jest, jak sama nazwa wskazuje, w pełni losowy, przez co nie ma aż tak wielkiej różnicy pomiędzy dwoma a dwudziestoma wymiarami.
+Poszukiwanie przypadkowe jest, jak sama nazwa wskazuje, w pełni losowe.
+Powoduje to, że dla każdej liczby wymiarów odchylenie standardowe jest równie
+niezadowalające.
