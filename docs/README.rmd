@@ -55,7 +55,7 @@ calculate_ga <- function(fitness, iters) {
             n.dim = dims,
             mu = 10L, lambda = 1L,
             mutator = setup(mutGauss, sdev = 2, lower = lower, upper = upper),
-            terminators = list(stopOnIters(1000))
+            terminators = list(stopOnEvals(1000))
         )
 
         return(res$best.y)
